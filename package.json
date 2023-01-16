@@ -1,0 +1,43 @@
+{
+  "name": "ts-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo of typescript apps and packages",
+  "packageManager": "yarn@3.2.1",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "init": " husky install",
+    "lint": "eslint .",
+    "checkTypes": "yarn workspaces foreach -v --exclude ts-monorepo exec bash -c 'tsc --project $(pwd)/tsconfig.json --noEmit'"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.15.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.0",
+    "eslint-plugin-no-relative-import-paths": "^1.5.2",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-native": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "resolutions": {
+    "tslib": "^2.4.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "lint-staged": {
+    "*.{js, ts,tsx}": [
+      "eslint --fix --ignore-pattern '!*'",
+      "prettier --write"
+    ],
+    "*.{scss,md}": "prettier --write"
+  }
+}
